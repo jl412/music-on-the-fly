@@ -1,0 +1,49 @@
+body{
+    color: #999;
+    background: #333;
+}
+
+h2{
+    color: #fff;
+    font-size: 3em;
+}
+
+#buttons > div{
+    margin-top: 50px;
+    margin-buttom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: left;
+    width:50%;
+}
+
+#buttons > div:first-child{
+    text-align: right;
+}
+
+#buttons > div:last-child{
+    text-align: left;
+}
+
+
+#buttons .btn-circle{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 992px){
+    #buttons > div{
+        float: none;
+        width: auto;
+        margin-top: 20px;
+        /*margin-left: 20px;*/
+        /*margin-right: 29px;*/
+        text-align: left!important;
+    }
+
+    #forms{
+        border-right: 1px solid #fff;
+    }
+
+}
+

@@ -1,0 +1,80 @@
+
+<div class="jga jga-profile">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" role="button">Profile</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="navbar-right-control">
+                <a ng-click="model.update(model.user)" role="button"><span class="glyphicon glyphicon-ok"></span></a>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="container centered-md space-for-footbar">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="firstName">First Name</label>
+                <input name="firstName"
+                       placeholder="Alice"
+                       class="form-control"
+                       id="firstName"
+                       ng-model="model.user.firstName"/>
+            </div>
+            <div class="col-md-6">
+                <label for="lastName">Last Name</label>
+                <input name="lastName"
+                       placeholder="Wonderland"
+                       class="form-control"
+                       id="lastName"
+                       ng-model="model.user.lastName"/>
+            </div>
+            <div class="col-md-6"><label for="username">Username</label>
+                <input name="username"
+                       readonly
+                       value="alice"
+                       placeholder="alice"
+                       class="form-control"
+                       id="username"
+                       ng-model="model.user.username"/>
+            </div>
+            <div class="col-md-6"><label for="email">Email</label>
+                <input name="email"
+                       type="email"
+                       placeholder="alice@wonderland.com"
+                       class="form-control"
+                       id="email"
+                       ng-model="model.user.email"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-default btn-primary btn-block"
+                   href="#!/user/{{model.user._id}}/website"
+                   role="button">Websites</a>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-default btn-danger btn-block"
+                   href="#!/login"
+                   role="button">Logout</a>
+            </div>
+
+        </div>
+
+        <div ng-show="model.message" class="alert alert-danger">
+            {{model.message}}
+        </div>
+
+        <!--<div class="footer-margin-space"></div>-->
+    </div>
+
+    <footer class="footer">
+        <a href="profile.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+    </footer>
+</div>
