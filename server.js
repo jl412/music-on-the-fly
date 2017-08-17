@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 // require("./test/app.js");
-require("./assignment/app.js");
+require("./server/app.js");
 
 var port = process.env.PORT || 3000;
 
