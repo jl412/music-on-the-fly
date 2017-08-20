@@ -1,11 +1,9 @@
 (function () {
     angular
-        .module('WAM')
+        .module('MOTF')
         .controller('profileController',profileController);
 
-    function profileController($location,
-                               $routeParams,
-                               userService ) {
+    function profileController($location, $routeParams, userService ) {
 
         var model = this;
         var uid = $routeParams["uid"];

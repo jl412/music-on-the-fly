@@ -1,0 +1,25 @@
+{{model.current}}
+<div id="navbar-holder" class={{model.class}} ng-controller="navbarController as model" ng-switch="model.state">
+    <nav class="navbar navbar-default navbar-toggleable" ng-switch-default>
+        <a class="navbar-brand" href="#">Music On The Fly</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#!/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!/register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div ng-switch-when="/login" class="full-height page-login">
+        <ng-include src="'views/navbar/templates/login.view.client.html'"/>
+    </div>
+    <div ng-switch-when="/register" class="full-height page-register">
+        <ng-include src="'views/navbar/templates/register.view.client.html'"/>
+    </div>
+</div>

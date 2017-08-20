@@ -1,11 +1,13 @@
 (function () {
     angular
-        .module("WAM")
+        .module("MOTF")
         .factory("userService", userService);
 
     function userService($http) {
 
         var api = {
+            login: login,
+            logout: logout,
             createUser:createUser,
             findUserById:findUserById,
             findUserByUsername:findUserByUsername,
@@ -16,6 +18,26 @@
         };
 
         return api;
+
+        function login(username, password) {
+            var url = "/api/login";
+            var credentials = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, credentials)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function logout() {
+            var url = "/api/logout";
+            return $http.post(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
         
         function createUser(user) {
             console.log("create user");

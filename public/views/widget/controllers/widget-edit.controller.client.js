@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WAM')
+        .module('MOTF')
         .controller('widgetEditController',widgetEditController);
 
     function widgetEditController($routeParams, widgetService, $location) {

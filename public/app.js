@@ -1,6 +1,6 @@
 (function () {
 
     angular
-        .module('WAM',['ngRoute', 'widgetDirectives', 'textAngular']);
+        .module('MOTF',['ngRoute', 'textAngular', 'ngAnimate']);
 
 })();

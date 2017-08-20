@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("WAM")
+        .module("MOTF")
         .factory("widgetService", widgetService);
 
     function widgetService($http) {

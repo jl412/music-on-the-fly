@@ -1,0 +1,52 @@
+<div class="valign-p ">
+    <div class="valign-c">
+        <div class="container centered-md">
+
+            <div class="row">
+                <div id=forms class="col-md-6">
+                    <h2>Login</h2>
+
+                    <div ng-show="model.message" class="alert alert-danger">
+                        {{model.message}}
+                    </div>
+
+                    <label for="username">Username {{model.current}}</label>
+                    <input ng-model="username"
+                           name="username"
+                           placeholder="alice"
+                           class="form-control"
+                           id="username"/>
+
+                    <label for="password">Password</label>
+                    <input ng-model="password"
+                           name="password"
+                           placeholder="qwe123$%^"
+                           type="password"
+                           class="form-control"
+                           id="password"/>
+                </div>
+
+                <div id="buttons" class="col-md-6">
+                    <div>
+                        <a id="login-btn" class="btn btn-default btn-primary btn-circle btn-xl"
+                           ng-click="model.login(username, password)"
+                           role="button">Login</a>
+                    </div>
+
+                    <div>
+                        <a id="regis-btn" class="btn btn-default btn-success btn-circle btn-xl"
+                           href="#!/register"
+                           role="button">Register</a>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<a class="close" href="#!"><i class="fa fa-times" aria-hidden="true"></i></a>

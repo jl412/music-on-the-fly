@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WAM')
+        .module('MOTF')
         .controller('pageListController',pageListController);
 
     function pageListController($routeParams, pageService) {

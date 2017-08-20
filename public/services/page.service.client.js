@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("WAM")
+        .module("MOTF")
         .factory("pageService", pageService);
 
     function pageService($http) {

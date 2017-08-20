@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WAM')
+        .module('MOTF')
         .controller('websiteListController', websiteListController);
     
     function websiteListController($routeParams, websiteService) {

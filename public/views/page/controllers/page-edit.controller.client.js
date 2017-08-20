@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WAM')
+        .module('MOTF')
         .controller('pageEditController',pageEditController);
 
     function pageEditController($routeParams,

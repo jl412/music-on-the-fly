@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WAM')
+        .module('MOTF')
         .controller('widgetListController', widgetListController);
     
     function widgetListController($sce,$routeParams,widgetService) {

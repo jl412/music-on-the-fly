@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WAM')
+        .module('MOTF')
         .controller('pageNewController',pageNewController);
 
     function pageNewController($routeParams, pageService, $location) {

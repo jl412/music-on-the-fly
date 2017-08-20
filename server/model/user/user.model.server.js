@@ -23,7 +23,7 @@ function findUserById(userId) {
 }
 
 function findUserByUsername(username) {
-    console.log("findUserByUsername:" + userModel.findOne({username: username}));
+    console.log("findUserByUsername:" + username);
     return userModel.findOne({username: username});
 }
 

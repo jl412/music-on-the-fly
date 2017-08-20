@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WAM')
+        .module('MOTF')
         .config(configuration);
     
     function configuration($routeProvider) {
@@ -8,18 +8,18 @@
         $routeProvider
 
             .when( '/', {
-                templateUrl: 'views/user/templates/login.view.client.html',
-                controller: 'loginController',
+                templateUrl: 'views/main/templates/main.view.client.html',
+                controller: 'mainController',
                 controllerAs: 'model'
             })
             .when('/login',  {
-                templateUrl: 'views/user/templates/login.view.client.html',
-                controller: 'loginController',
+                templateUrl: 'views/main/templates/main.view.client.html',
+                controller: 'mainController',
                 controllerAs: 'model'
             })
             .when('/register', {
-                templateUrl:'views/user/templates/register.view.client.html',
-                controller:"registerController",
+                templateUrl:'views/main/templates/main.view.client.html',
+                controller:"mainController",
                 controllerAs:"model"
             })
             .when('/user/:uid', {
