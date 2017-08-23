@@ -1,0 +1,56 @@
+<div class="container">
+
+    <ul class="music-list row">
+        <li ng-repeat="track in model.tracks" class="music-items">
+            <div class="information" data-toggle="collapse" data-target="#{{track.id}}Options" aria-expanded="false" aria-controls="{{track.id}}Options">
+                <div class="music-cover" style="background-image: url('{{track.album.images[0].url}}')">
+                </div>
+                <div class="music-details" style="background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('{{track.album.images[0].url}}')">
+                    <h2>{{track.name}}</h2>
+                    <h3>{{track.album.name}}</h3>
+                    <h3><span ng-repeat="artist in track.artists">{{artist.name}}     </span></h3>
+                </div>
+            </div>
+            <div class="options collapse" id="{{track.id}}Options" style="background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('{{track.album.images[0].url}}')">
+                <div class="option">
+                    <a  ng-if="currentUser" data-toggle="modal" data-target="#choosePlaylist" data-trackid="{{track.id}}" data-trackname="{{track.name}}" data-trackartist="{{track.artists[0].name}}">
+                        <h2><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-list" aria-hidden="true"></i></h2>
+                    </a>
+                    <a  ng-if="!currentUser" ng-click="model.alertLogin()">
+                        <h2><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-list" aria-hidden="true"></i></h2>
+                    </a>
+                </div>
+                <div class="option">
+                    <a>
+                        <h2><i class="fa fa-play" aria-hidden="true"></i></h2>
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="choosePlaylist" tabindex="-1" role="dialog" aria-labelledby="choosePlaylist" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="choosePlaylistLabel">Choose a playlist</h5>
+            </div>
+            <div class="modal-body">
+                    <div class="form-check" ng-repeat="playlist in model.playlists">
+                        <label class="form-check-label">
+                            <input class="form-check-input" ng-model="model.plid" type="radio" name="playlistRadios"  value="{{playlist._id}}">
+                            {{playlist.name}}
+                        </label>
+                    </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="model.addTrack(trackId, trackName, trackArtist, model.plid)">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

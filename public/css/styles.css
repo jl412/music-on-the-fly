@@ -252,13 +252,6 @@ h1{
     background-color: rgba(80,80,80,1);
 }
 
-/*.navbar-collapse.show{*/
-    /*margin-left: -1em;*/
-    /*margin-right:-2em;*/
-    /*padding-left: 2em;*/
-    /*padding-right:2em;*/
-    /*background-color: rgba(0,0,0,0.6);*/
-/*}*/
 
 .right-control{
     float: right;
@@ -276,18 +269,28 @@ ul.music-list{
 }
 
 li.music-items{
-    height: 100px;
     display: block;
     animation: scaleUp 0.3s both ease-in; z-index: 9999;
     animation-delay: 0.2s;
 }
 
 .music-items .information{
-    height: 100%;
+    height: 100px;
     width: 100%;
 }
 
 .music-items .information::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.music-items .options{
+    background-size: cover;
+    background-position: center;
+}
+
+.music-items .options::after{
     content: '';
     display: block;
     clear: both;
@@ -327,6 +330,24 @@ li.music-items{
 
 .music-details span{
     margin-right: 1em;
+}
+
+
+.music-items .option{
+    padding: 1.5em;
+    text-align: center;
+    float: left;
+    width: 50%;
+}
+
+.music-items .option a{
+    color: #BBB;
+    transition: color .3s;
+}
+
+.music-items .option a:hover{
+    color: #FFF;
+    transition: color .3s;
 }
 
 #profile-panel{
@@ -373,13 +394,23 @@ li.music-items{
     animation: slideOutLeft 0.3s both ease-in; z-index: 8888;
 }
 
+
+.page-result.ng-enter{
+    animation: slideInRight 0.3s both ease-in; z-index: 9000;
+}
 .page-result.ng-leave{
     animation: slideOutRight 0.3s both ease-in; z-index: 8888;
 }
 
-.page-result.ng-enter{
+
+.page-profile.ng-enter{
     animation: slideInBottom 0.3s both ease-in; z-index: 9000;
 }
+.page-profile.ng-leave{
+    animation: slideOutBottom 0.3s both ease-in; z-index: 8888;
+}
+
+
 
 /*------*/
 
@@ -418,7 +449,7 @@ li.music-items{
     }
 
 
-    li.music-items{
+    .music-items .information{
         height: 200px;
     }
 

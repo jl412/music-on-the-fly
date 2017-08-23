@@ -1,32 +1,5 @@
+<result-items></result-items>
+
 <div ng-show="model.message" class="alert alert-danger">
     {{model.message}}
 </div>
-
-<div class="container">
-
-    <ul class="music-list row">
-        <li ng-repeat="track in model.tracks" class="music-items">
-            <div class="information" data-toggle="collapse" data-target="#{{track.id}}Options" aria-expanded="false" aria-controls="{{track.id}}Options">
-                <div class="music-cover" style="background-image: url('{{track.album.images[0].url}}')">
-                </div>
-                <div class="music-details" style="background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('{{track.album.images[0].url}}')">
-                    <h2>{{track.name}}</h2>
-                    <h3>{{track.album.name}}</h3>
-                    <h3><span ng-repeat="artist in track.artists">{{artist.name}}     </span></h3>
-                </div>
-            </div>
-            <div class="options collapse" id="{{track.id}}Options" style="background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('{{track.album.images[0].url}}')">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <a>
-                            <h2><i class="fa fa-plus" aria-hidden="true"></i><i class="fa fa-list" aria-hidden="true"></i></h2>
-                        </a>
-                    </div>
-                    <div class="col-xs-6"><a><h2><i class="fa fa-play" aria-hidden="true"></i></h2></a></div>
-                </div>
-            </div>
-        </li>
-    </ul>
-
-</div>
-

@@ -12,6 +12,17 @@
 }
 
 /* slide in from the bottom */
+@keyframes slideOutLeftFade {
+    to      { transform: translateX(-100%); opacity: 0;}
+}
+
+/* slide in from the bottom */
+@keyframes slideInRightFade {
+    from      { transform: translateX(100%); opacity: 0;}
+}
+
+
+/* slide in from the bottom */
 @keyframes slideOutLeft {
     to      { transform: translateX(-100%); }
 }
@@ -46,6 +57,11 @@
 @keyframes slideInBottom {
     from    { transform:translateY(100%); }
     to      { transform: translateY(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideOutBottom {
+    to    { transform:translateY(100%); }
 }
 
 @keyframes fadeIn {

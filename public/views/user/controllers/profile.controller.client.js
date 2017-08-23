@@ -22,7 +22,6 @@
                 .findPlaylistsByUser(model.user._id)
                 .then(function (playlists) {
                     model.playlists = playlists;
-                    console.log(playlists);
                 })
         }
 
@@ -54,7 +53,8 @@
         function createPlaylist(name) {
             var playlist = {
                 "_user": model.user,
-                "name": name
+                "name": name,
+                "tracks": []
             };
 
             playlistService

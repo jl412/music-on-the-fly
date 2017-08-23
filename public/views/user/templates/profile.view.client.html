@@ -78,6 +78,11 @@
                 </a>
             </div>
             <h5>{{playlist.name}}</h5>
+            <ul>
+                <li ng-repeat="track in playlist.tracks">
+                    {{track.name}}　/　by {{track.artist}}
+                </li>
+            </ul>
             <hr>
         </li>
     </ul>
@@ -96,20 +101,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="model.createPlaylist(newPlaylistName)">Create</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="delPlaylistConf" tabindex="-1" role="dialog" aria-labelledby="delPlaylistConfLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Do you really want to delete this Playlist? This action cannot be reverted.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="model.createPlaylist(newPlaylistName)">Delete</button>
             </div>
         </div>
     </div>

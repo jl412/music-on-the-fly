@@ -36,7 +36,10 @@
             .when('/result', {
                 templateUrl:'views/main/templates/result.view.client.html',
                 controller:"resultController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
             })
 
 
@@ -66,6 +69,20 @@
                     deferred.resolve(currentUser);
                 } else{
                     deferred.reject();
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkCurrentUser($q, $location, userService) {
+        var deferred = $q.defer();
+        userService
+            .checkLoggedIn()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.resolve({});
+                } else {
+                    deferred.resolve(currentUser);
                 }
             });
         return deferred.promise;

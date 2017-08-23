@@ -1,6 +1,6 @@
 (function () {
 
     angular
-        .module('MOTF',['ngRoute', 'textAngular', 'ngAnimate']);
+        .module('MOTF',['ngRoute', 'resultItemsDirectives', 'ngAnimate']);
 
 })();
