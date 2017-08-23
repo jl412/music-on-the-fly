@@ -14,6 +14,7 @@
 
         model.update = updateUser;
         model.logout = logout;
+        model.deleteUser = deleteUser;
 
         model.createPlaylist = createPlaylist;
         model.deletePlaylist = deletePlaylist;
@@ -22,7 +23,6 @@
 
         function init(){
 
-            console.log(currentUser);
             if(currentUser.admin) {
                 model.ownPage = 1;
                 userService

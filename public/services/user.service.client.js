@@ -33,7 +33,6 @@
         }
 
         function logout() {
-            console.log("log out");
             var url = "/api/logout";
             return $http.post(url)
                 .then(function (response) {
@@ -42,7 +41,6 @@
         }
 
         function register(user) {
-            console.log("register");
             var url = "/api/register";
             return $http.post(url, user)
                 .then(function (response) {

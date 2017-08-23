@@ -167,6 +167,7 @@ function deleteUser(req, res) {
     userModel
         .deleteUser(uid)
         .then(function () {
+            req.logout();
             res.sendStatus(200);
         }, function (err) {
             res.sendStatus(404).send(err);

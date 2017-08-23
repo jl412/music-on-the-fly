@@ -36,6 +36,5 @@ function updateUser(userId, user) {
 }
 
 function deleteUser(userId) {
-    console.log("model:deleteUser: " + user);
     return userModel.remove({_id: userId});
 }
