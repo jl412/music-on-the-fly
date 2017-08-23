@@ -9,7 +9,7 @@
 
         var model = this;
         model.routeID = $routeParams['uid'];
-        model.user = currentUser;
+
 
 
         model.update = updateUser;
@@ -21,9 +21,32 @@
         model.play = play;
 
         function init(){
-            console.log(model.user._id === model.routeID);
+
+            console.log(currentUser);
+            if(currentUser.admin) {
+                model.ownPage = 1;
+                userService
+                    .findUserById(model.routeID)
+                    .then(function (user) {
+                        model.user = user;
+                        model.admin = 1;
+                    });
+            }else if(currentUser._id === model.routeID){
+                model.user = currentUser;
+                model.ownPage = 1;
+                model.admin = 0;
+            }else{
+                model.ownPage = 0;
+                userService
+                    .findUserById(model.routeID)
+                    .then(function (user) {
+                        model.user = user;
+                        model.admin = 0;
+                    })
+            }
+            // console.log(model.user._id === model.routeID);
             playlistService
-                .findPlaylistsByUser(model.user._id)
+                .findPlaylistsByUser(model.routeID)
                 .then(function (playlists) {
                     model.playlists = playlists;
                 })

@@ -6,6 +6,7 @@ var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     email: String,
+    admin: {type: Boolean, default: false},
     playlist: [{type: mongoose.Schema.Types.ObjectId, ref: "playlistModel"}],
     dateCreated: {type: Date, default: Date.now}
 

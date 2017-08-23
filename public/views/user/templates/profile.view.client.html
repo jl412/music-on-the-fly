@@ -4,7 +4,7 @@
 
     <h2>Profile</h2>
 
-    <div class="row">
+    <div ng-if="model.ownPage" class="row">
         <div class="col-md-6">
             <label for="firstName">First Name</label>
             <input name="firstName"
@@ -40,16 +40,58 @@
         </div>
     </div>
 
-    <div class="row">
+    <div ng-if="!model.ownPage" class="row">
+        <div class="col-md-6">
+            <label for="firstName">First Name</label>
+            <input name="firstName"
+                   placeholder="Alice"
+                   class="form-control"
+                   id="firstName"
+                   ng-model="model.user.firstName" readonly/>
+        </div>
+        <div class="col-md-6">
+            <label for="lastName">Last Name</label>
+            <input name="lastName"
+                   placeholder="Wonderland"
+                   class="form-control"
+                   id="lastName"
+                   ng-model="model.user.lastName" readonly/>
+        </div>
+        <div class="col-md-6"><label for="username">Username</label>
+            <input name="username"
+                   readonly
+                   value="alice"
+                   placeholder="alice"
+                   class="form-control"
+                   id="username"
+                   ng-model="model.user.username"/>
+        </div>
+        <div class="col-md-6"><label for="email">Email</label>
+            <input name="email"
+                   type="email"
+                   placeholder="alice@wonderland.com"
+                   class="form-control"
+                   id="email"
+                   ng-model="model.user.email" readonly/>
+        </div>
+    </div>
+
+    <div ng-if="model.ownPage" class="row">
         <div class="col-md-6">
             <a class="btn btn-default btn-primary btn-block"
                ng-click="model.update(model.user)"
                role="button">Update</a>
         </div>
-        <div class="col-md-6">
+        <div  ng-if="!model.admin" class="col-md-6">
             <a class="btn btn-default btn-danger btn-block"
                ng-click="model.logout()"
                role="button">Logout</a>
+        </div>
+
+        <div  ng-if="model.admin" class="col-md-6">
+            <a class="btn btn-default btn-danger btn-block"
+               ng-click="model.deleteUser(model.user)"
+               role="button">DELETE USER</a>
         </div>
 
     </div>
@@ -62,7 +104,7 @@
 </div>
 
 <div class="container centered-md" id="playlist-panel">
-    <div class="right-control">
+    <div ng-if="model.ownPage" class="right-control">
         <a data-toggle="modal" data-target="#newPlaylistModal" role="button">
             <h2><i class="fa fa-plus" aria-hidden="true"></i></h2>
         </a>
@@ -72,7 +114,7 @@
 
     <ul class="music-list row" style="margin-top: 50px">
         <li ng-repeat="playlist in model.playlists">
-            <div  style="float: right">
+            <div ng-if="model.ownPage" style="float: right">
                 <a role="button" ng-click="model.deletePlaylist(playlist._id)">
                     <h5><i class="fa fa-trash-o" aria-hidden="true"></i></h5>
                 </a>
@@ -85,7 +127,7 @@
                     </span>
                     {{track.name}}　/　by {{track.artist}}
                     <span style="margin-left: 15px">
-                        <a role="button" ng-click="model.deleteTrack(track.id, playlist._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        <a ng-if="model.ownPage" role="button" ng-click="model.deleteTrack(track.id, playlist._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                     </span>
                 </li>
             </ul>
