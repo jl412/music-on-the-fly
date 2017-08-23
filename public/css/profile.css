@@ -1,9 +1,0 @@
-.centered-md > .row:first-child{
-    margin-top: 4em;
-}
-
-@media (min-width: 992px){
-    .centered-md > .row:first-child{
-        margin-top: 7em;
-    }
-}

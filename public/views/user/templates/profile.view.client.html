@@ -1,80 +1,117 @@
 
-<div class="jga jga-profile">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <a class="navbar-brand" role="button">Profile</a>
-            </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="navbar-right-control">
-                <a ng-click="model.update(model.user)" role="button"><span class="glyphicon glyphicon-ok"></span></a>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+<div class="container centered-md" id="profile-panel">
 
+    <h2>Profile</h2>
 
-    <div class="container centered-md space-for-footbar">
-
-        <div class="row">
-            <div class="col-md-6">
-                <label for="firstName">First Name</label>
-                <input name="firstName"
-                       placeholder="Alice"
-                       class="form-control"
-                       id="firstName"
-                       ng-model="model.user.firstName"/>
-            </div>
-            <div class="col-md-6">
-                <label for="lastName">Last Name</label>
-                <input name="lastName"
-                       placeholder="Wonderland"
-                       class="form-control"
-                       id="lastName"
-                       ng-model="model.user.lastName"/>
-            </div>
-            <div class="col-md-6"><label for="username">Username</label>
-                <input name="username"
-                       readonly
-                       value="alice"
-                       placeholder="alice"
-                       class="form-control"
-                       id="username"
-                       ng-model="model.user.username"/>
-            </div>
-            <div class="col-md-6"><label for="email">Email</label>
-                <input name="email"
-                       type="email"
-                       placeholder="alice@wonderland.com"
-                       class="form-control"
-                       id="email"
-                       ng-model="model.user.email"/>
-            </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="firstName">First Name</label>
+            <input name="firstName"
+                   placeholder="Alice"
+                   class="form-control"
+                   id="firstName"
+                   ng-model="model.user.firstName"/>
         </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <a class="btn btn-default btn-primary btn-block"
-                   href="#!/user/{{model.user._id}}/website"
-                   role="button">Websites</a>
-            </div>
-            <div class="col-md-6">
-                <a class="btn btn-default btn-danger btn-block"
-                   href="#!/login"
-                   role="button">Logout</a>
-            </div>
-
+        <div class="col-md-6">
+            <label for="lastName">Last Name</label>
+            <input name="lastName"
+                   placeholder="Wonderland"
+                   class="form-control"
+                   id="lastName"
+                   ng-model="model.user.lastName"/>
         </div>
-
-        <div ng-show="model.message" class="alert alert-danger">
-            {{model.message}}
+        <div class="col-md-6"><label for="username">Username</label>
+            <input name="username"
+                   readonly
+                   value="alice"
+                   placeholder="alice"
+                   class="form-control"
+                   id="username"
+                   ng-model="model.user.username"/>
         </div>
-
-        <!--<div class="footer-margin-space"></div>-->
+        <div class="col-md-6"><label for="email">Email</label>
+            <input name="email"
+                   type="email"
+                   placeholder="alice@wonderland.com"
+                   class="form-control"
+                   id="email"
+                   ng-model="model.user.email"/>
+        </div>
     </div>
 
-    <footer class="footer">
-        <a href="profile.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-    </footer>
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-default btn-primary btn-block"
+               ng-click="model.update(model.user)"
+               role="button">Update</a>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-default btn-danger btn-block"
+               ng-click="model.logout()"
+               role="button">Logout</a>
+        </div>
+
+    </div>
+
+    <div ng-show="model.message" class="alert alert-danger">
+        {{model.message}}
+    </div>
+
+    <!--<div class="footer-margin-space"></div>-->
 </div>
+
+<div class="container centered-md" id="playlist-panel">
+    <div class="right-control">
+        <a data-toggle="modal" data-target="#newPlaylistModal" role="button">
+            <h2><i class="fa fa-plus" aria-hidden="true"></i></h2>
+        </a>
+    </div>
+    <h2>Playlists</h2>
+
+
+    <ul class="music-list row" style="margin-top: 50px">
+        <li ng-repeat="playlist in model.playlists">
+            <div  style="float: right">
+                <a role="button" ng-click="model.deletePlaylist(playlist._id)">
+                    <h5><i class="fa fa-trash-o" aria-hidden="true"></i></h5>
+                </a>
+            </div>
+            <h5>{{playlist.name}}</h5>
+            <hr>
+        </li>
+    </ul>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newPlaylistModal" tabindex="-1" role="dialog" aria-labelledby="newPlaylistModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label for="new-playlist-name">Enter a name:</label>
+                <input name="new-playlist-name"
+                       class="form-control"
+                       id="new-playlist-name"
+                       ng-model="newPlaylistName"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="model.createPlaylist(newPlaylistName)">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="delPlaylistConf" tabindex="-1" role="dialog" aria-labelledby="delPlaylistConfLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Do you really want to delete this Playlist? This action cannot be reverted.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="model.createPlaylist(newPlaylistName)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+

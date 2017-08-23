@@ -1,4 +1,5 @@
-h2{
+page-login h2,
+page-register h2{
     color: #fff;
     font-size: 3em;
 }

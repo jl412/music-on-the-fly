@@ -8,7 +8,8 @@
         var api = {
             login: login,
             logout: logout,
-            createUser:createUser,
+            register: register,
+            checkLoggedIn: checkLoggedIn,
             findUserById:findUserById,
             findUserByUsername:findUserByUsername,
             findUserByCrendentials:findUserByCrendentials,
@@ -32,20 +33,29 @@
         }
 
         function logout() {
+            console.log("log out");
             var url = "/api/logout";
             return $http.post(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
-        
-        function createUser(user) {
-            console.log("create user");
-            var url = '/api/server/user'
+
+        function register(user) {
+            console.log("register");
+            var url = "/api/register";
             return $http.post(url, user)
                 .then(function (response) {
                     return response.data;
-                })
+                });
+        }
+
+        function checkLoggedIn() {
+            var url = "/api/checkLoggedIn";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findUserById(uid) {

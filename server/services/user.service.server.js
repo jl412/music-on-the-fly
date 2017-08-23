@@ -11,9 +11,10 @@ passport.deserializeUser(deserializeUser);
 
 app.post('/api/login', passport.authenticate('local'), login);
 app.post('/api/logout', logout);
+app.post('/api/register', register);
+app.get('/api/checkLoggedIn', checkLoggedIn);
 app.get('/api/server/user', findUser);
 app.get('/api/server/user/:uid', findUserById);
-app.post('/api/server/user', createUser);
 app.put('/api/server/user/:uid', updateUser);
 app.delete('/api/server/user/:uid', deleteUser);
 
@@ -27,6 +28,27 @@ function login(req, res) {
 function logout(req, res) {
     req.logout();
     res.sendStatus(200);
+}
+
+function register(req, res) {
+    var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
+    console.log("encrypted: " + user.password);
+    return userModel
+        .createUser(user)
+        .then(function (user) {
+            req.login(user, function (status) {
+                res.json(user);
+            });
+        });
+}
+
+function checkLoggedIn(req, res) {
+    if(req.isAuthenticated()) {
+        res.json(req.user);
+    } else {
+        res.send('0');
+    }
 }
 
 function serializeUser(user, done) {
@@ -49,43 +71,25 @@ function deserializeUser(user, done) {
 function localStrategy(username, password, done) {
 
     userModel
-        .findUserByCredentials(username, password)
-        .then(
-            function(user) {
-                if(user.username === username && user.password === password) {
-                    return done(null, user);
-                } else {
-                    return done(null, false);
-                }
-            },
-            function(err) {
-                if (err) { return done(err); }
+        .findUserByUsername(username)
+        .then(function (user) {
+            if(bcrypt.compareSync(password, user.password)) {
+                console.log("password matches");
+                return userModel
+                    .findUserByCredentials(username, user.password)
+                    .then(function(user) {
+                            if (!user) {
+                                return done(null, false);
+                            }
+                            return done(null, user);
+                        },
+                        function(err) {
+                            if (err) {
+                                return done(err);
+                            }
+                        });
             }
-        );
-
-    // userModel
-    //     .findUserByUsername(username)
-    //     .then(function (user) {
-    //         console.log("found password: " + user.password);
-    //         console.log("entered password: " + password);
-    //         console.log("pw-check: " + bcrypt.compareSync(password, user.password));
-    //         if(bcrypt.compareSync(password, user.password)) {
-    //             console.log("password matches");
-    //             return userModel
-    //                 .findUserByCredentials(username, user.password)
-    //                 .then(function(user) {
-    //                         if (!user) {
-    //                             return done(null, false);
-    //                         }
-    //                         return done(null, user);
-    //                     },
-    //                     function(err) {
-    //                         if (err) {
-    //                             return done(err);
-    //                         }
-    //                     });
-    //         }
-    //     });
+        });
 }
 
 

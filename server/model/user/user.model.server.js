@@ -14,7 +14,6 @@ module.exports = userModel;
 
 
 function createUser(user) {
-    console.log("create user");
     return userModel.create(user);
 }
 

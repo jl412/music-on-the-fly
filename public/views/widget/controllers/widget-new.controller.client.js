@@ -31,7 +31,7 @@
             widgetService
                 .createWidget(widget)
                 .then(function (reponse) {
-                    $location.url('/user/' + model.uid + '/website/' + model.wid + '/page/' + model.pid + '/widget/' + reponse._id);
+                    $location.url('/user/' + model.uid + '/playlist/' + model.wid + '/page/' + model.pid + '/widget/' + reponse._id);
                 })
         }
 

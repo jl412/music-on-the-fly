@@ -6,13 +6,15 @@ html, body{
     height: 100% !important;
     /*color: #fff;*/
     transition-timing-function: ease;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bg.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bg.jpg");
+    background-position: center;
     background-size: cover;
 
 }
 
 body{
     /*color: #999;*/
+    overflow: hidden;
 
 }
 
@@ -22,12 +24,16 @@ input.form-control {
 }
 
 a{
-    color: inherit;
+    cursor: pointer !important;
     text-decoration: none;
 }
 
 a:hover{
     text-decoration: none;
+}
+
+a.btn.btn-default{
+    color: #fff !important;
 }
 
 .page-wrapper{
@@ -36,14 +42,20 @@ a:hover{
     position: absolute;
     top: 0;
     left: 0;
+    overflow: auto;
+    background-position: center;
+    background-size: cover;
 }
 
+.page-result.page-wrapper{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/result.jpg");
+}
+
+.page-profile.page-wrapper{
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../img/profile.jpg");
+}
 
 h1{
-    margin-bottom: 1em;
-}
-
-h2{
     margin-bottom: 1em;
 }
 
@@ -165,9 +177,9 @@ h2{
     top: 0;
     left:0;
     right:0;
-    background-color: rgba(0,0,0,0.8);
     border: none;
     height: 50px;
+    background-color: #111;
     -webkit-transition: .5s;
     -moz-transition: .5s;
     -ms-transition: .5s;
@@ -175,11 +187,22 @@ h2{
     transition: .5s;
 }
 
-#navbar-holder button,
+#navbar-holder i,
 #navbar-holder div,
 #navbar-holder li,
+#navbar-holder a,
 #navbar-holder span{
     color: #fff !important;
+}
+
+#navbar-holder .dropdown-menu{
+    background-color: rgba(0,0,0,0.6);
+    animation: fadeIn 0.3s both ease-in;
+}
+
+#navbar-holder .dropdown-item:hover{
+    background-color: rgba(255,255,255,0.3);
+    transition: background-color .3s;
 }
 
 .close {
@@ -201,12 +224,12 @@ h2{
 /*#navbar-holder:hover{*/
     /*height:100%;*/
 /*}*/
+.modal{
+    z-index: 11111;
+}
 
-
-#navbar-holder .navbar-default{
-    background: none;
-    border: none;
-    margin: 0;
+#navbar-holder .navbar{
+    background-color: #111;
 }
 
 .navbar-brand {
@@ -221,43 +244,141 @@ h2{
     line-height: 20px;
 }
 
-.navbar-right-control{
-    margin: 6px;
-    position: absolute;
-    right: 5px;
-    top: 0;
-    color: #fff!important;
-    font-size: 24px;
-}
-
 .navbar-left-control a{
     color: #fff;
 }
-
-.navbar-right-control a{
-    color: #fff;
-}
-
 #navbar-holder.navbar-full{
     height:100% !important;
     background-color: rgba(80,80,80,1);
 }
 
+/*.navbar-collapse.show{*/
+    /*margin-left: -1em;*/
+    /*margin-right:-2em;*/
+    /*padding-left: 2em;*/
+    /*padding-right:2em;*/
+    /*background-color: rgba(0,0,0,0.6);*/
+/*}*/
+
+.right-control{
+    float: right;
+}
+
+.page-result .container{
+    margin-top: 130px;
+}
+
+
+ul.music-list{
+    padding:0 !important;
+    list-style-type: none;
+    display: block;
+}
+
+li.music-items{
+    height: 100px;
+    display: block;
+    animation: scaleUp 0.3s both ease-in; z-index: 9999;
+    animation-delay: 0.2s;
+}
+
+.music-items .information{
+    height: 100%;
+    width: 100%;
+}
+
+.music-items .information::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.music-cover{
+    width: 100px;
+    height:100%;
+    float: left;
+    background-size: cover;
+}
+
+.music-details{
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 1em;
+    margin-left: 100px;
+    height: 100%;
+    background-size: cover;
+}
+
+.music-details h1,
+.music-details h2,
+.music-details h3,
+.music-details h4,
+.music-details p{
+    color: #555 !important;
+}
+
+.music-details h2{
+    font-size: 18px;
+}
+
+.music-details h3{
+    font-size: 14px;
+}
+
+.music-details span{
+    margin-right: 1em;
+}
+
+#profile-panel{
+    margin-top: 110px;
+    background-color: #fff;
+    border: 1px solid #CCC;
+    border-radius: 7px;
+    padding: 2em;
+}
+
+#playlist-panel{
+    margin-top: 80px;
+    padding: 2em;
+    background-color: #444;
+    border-radius: 7px;
+    border: none;
+    color: #fff;
+    -webkit-box-shadow: 6px 11px 14px 5px rgba(0,0,0,0.5);
+    -moz-box-shadow: 6px 11px 14px 5px rgba(0,0,0,0.5);
+    box-shadow: 6px 11px 14px 5px rgba(0,0,0,0.5);
+}
+
+#playlist-panel hr{
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
 
 /*--Animations--*/
 .page-login.ng-enter,
 .page-register.ng-enter{
-    animation: fadeIn 0.3s both ease-in; z-index: 8888;
+    animation: fadeIn 0.3s both ease-in; z-index: 9999;
     animation-delay: 0.3s;
 }
 
 .page-login.ng-leave,
 .page-register.ng-leave{
-    animation: fadeOut 0.3s both ease-in; z-index: 9999;
+    animation: fadeOut 0.3s both ease-in; z-index: 8000;
 }
 
 .page-main.ng-enter {
-    animation: scaleUp 0.3s both ease-in; z-index: 8888;
+    animation: scaleDown 0.3s both ease-in; z-index: 9000;
+}
+
+.page-main.ng-leave{
+    animation: slideOutLeft 0.3s both ease-in; z-index: 8888;
+}
+
+.page-result.ng-leave{
+    animation: slideOutRight 0.3s both ease-in; z-index: 8888;
+}
+
+.page-result.ng-enter{
+    animation: slideInBottom 0.3s both ease-in; z-index: 9000;
 }
 
 /*------*/
@@ -284,6 +405,7 @@ h2{
 }
 
 @media (min-width: 992px){
+
     .centered-md {
         width: 750px;
     }
@@ -295,12 +417,35 @@ h2{
         margin-right: auto;
     }
 
-    .navbar-expand-lg .navbar-toggler {
-        display: none;
+
+    li.music-items{
+        height: 200px;
     }
 
-    .navbar-expand-lg .navbar-collapse {
-        display: -ms-flexbox!important;
-        display: flex!important;
+    .music-cover{
+        width: 200px;
+    }
+
+    .music-details{
+        padding-left: 3em;
+        padding-right: 3em;
+        padding-top: 1em;
+        margin-left: 200px;
+        background-size: cover;
+    }
+
+    .music-details h2{
+        font-size: 28px;
+    }
+
+    .music-details h3{
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 500px;
+        margin: 170px auto;
     }
 }

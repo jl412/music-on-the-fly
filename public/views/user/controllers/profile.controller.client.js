@@ -3,16 +3,27 @@
         .module('MOTF')
         .controller('profileController',profileController);
 
-    function profileController($location, $routeParams, userService ) {
+    function profileController($scope, currentUser, $location, $routeParams, userService, playlistService ) {
+
+        $scope.pageClass= "page-profile";
 
         var model = this;
-        var uid = $routeParams["uid"];
+        model.user = currentUser;
+
 
         model.update = updateUser;
+        model.logout = logout;
 
+        model.createPlaylist = createPlaylist;
+        model.deletePlaylist = deletePlaylist;
 
-        function logout() {
-            $location.url('/login');
+        function init(){
+            playlistService
+                .findPlaylistsByUser(model.user._id)
+                .then(function (playlists) {
+                    model.playlists = playlists;
+                    console.log(playlists);
+                })
         }
 
         function deleteUser(user) {
@@ -30,14 +41,39 @@
                 });
         }
 
-        function init() {
+        function logout() {
             userService
-                .findUserById(uid)
-                .then(function (user) {
-                    model.user = user;
+                .logout()
+                .then(function () {
+                    $location.url('/');
                 });
         }
-        init();
+
+
+        /*-- Playlist functions--*/
+        function createPlaylist(name) {
+            var playlist = {
+                "_user": model.user,
+                "name": name
+            };
+
+            playlistService
+                .createPlaylist(playlist)
+                .then(function (reponse) {
+                    console.log("playlistCreated");
+                    init();
+                })
+        }
+
+        function deletePlaylist(plid) {
+            playlistService
+                .deletePlaylist(plid)
+                .then(function () {
+                    init();
+                });
+        }
+
+        init()
 
 
 

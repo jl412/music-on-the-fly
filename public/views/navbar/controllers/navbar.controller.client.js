@@ -19,6 +19,16 @@
             }else{
                 model.class = "navbar-fixed-top";
             }
+
+            userService
+                .checkLoggedIn()
+                .then(function (currentUser) {
+                    if (currentUser === '0') {
+                        $rootScope.currentUser = null;
+                    }else{
+                        $rootScope.currentUser = currentUser;
+                    }
+                });
         }
 
         init();
@@ -37,9 +47,6 @@
                 return;
             }
 
-            // userService
-            //     .findUserByCrendentials(username, password)
-            //     .then(login, errorMessage);
 
             userService
             //.findUserByCredentials(username, password)
@@ -53,20 +60,13 @@
             function login(found) {
                 if(found !== null){
                     console.log("login success")
-                    $location.url('/profile');
+                    $location.url("/user/" + found._id);
                 }
                 else{
                     model.message = "Username " + username + " not found, please try again";
                 }
             }
 
-            function logout() {
-                userService
-                    .logout()
-                    .then(function () {
-                        $location.url('/');
-                    });
-            }
         }
 
         /*register functions*/
@@ -74,13 +74,28 @@
                                   password,
                                   password2) {
 
+            if (username === null || username === '' || typeof username === 'undefined') {
+                model.error = 'Username required!';
+                return;
+            }
+
+            if (password === null || password === '' || typeof password === 'undefined') {
+                model.error = 'Password required!';
+                return;
+            }
+
+            if (password2 === null || password2 === '' || typeof password2 === 'undefined') {
+                model.error = 'Verify password required!';
+                return;
+            }
+
             if(password !== password2){
                 model.error = "Password must match";
                 return;
             }
 
-            var found = userService.findUserByUsername(username);
-            found
+            userService
+                .findUserByUsername(username)
                 .then(function (repsonse) {
 
                     console.log(repsonse);
@@ -93,7 +108,7 @@
                         };
 
                         userService
-                            .createUser(user)
+                            .register(user)
                             .then(function (user) {
                                 $location.url("/user/" + user._id);
                             })
@@ -104,6 +119,14 @@
 
                 })
 
+        }
+
+        model.logout = function() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/');
+                });
         }
 
     }
