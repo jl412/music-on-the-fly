@@ -16,6 +16,7 @@
 
         model.createPlaylist = createPlaylist;
         model.deletePlaylist = deletePlaylist;
+        model.deleteTrack = deleteTrack;
 
         function init(){
             playlistService
@@ -71,6 +72,28 @@
                 .then(function () {
                     init();
                 });
+        }
+
+        function deleteTrack(tid ,playlistid) {
+
+            playlistService
+                .findPlaylistById(playlistid)
+                .then(function (playlist) {
+                    for (t in playlist.tracks){
+                        if(t.id === "tid"){
+                            var track = t;
+                        }
+                    }
+                    var index = playlist.tracks.indexOf(track);
+                    playlist.tracks.splice(index, 1);
+                    var newInfo = playlist;
+                    // console.log(newInfo);
+                    playlistService
+                        .updatePlaylist(playlistid, newInfo)
+                        .then(function () {
+                            init();
+                        });
+                })
         }
 
         init()

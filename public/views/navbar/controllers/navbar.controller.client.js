@@ -61,6 +61,7 @@
                 if(found !== null){
                     console.log("login success")
                     $location.url("/user/" + found._id);
+                    init();
                 }
                 else{
                     model.message = "Username " + username + " not found, please try again";
@@ -126,6 +127,7 @@
                 .logout()
                 .then(function () {
                     $location.url('/');
+                    init();
                 });
         }
 

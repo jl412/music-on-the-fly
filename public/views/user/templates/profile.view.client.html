@@ -81,6 +81,9 @@
             <ul>
                 <li ng-repeat="track in playlist.tracks">
                     {{track.name}}　/　by {{track.artist}}
+                    <span style="margin-left: 15px">
+                        <a role="button" ng-click="model.deleteTrack(track.id, playlist._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </span>
                 </li>
             </ul>
             <hr>

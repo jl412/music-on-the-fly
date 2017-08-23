@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Web Development</title>
+    <title>Music On The Fly</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
@@ -42,6 +42,8 @@
 
     <script src="views/navbar/controllers/navbar.controller.client.js"></script>
 
+    <script src="views/player/controllers/player.controller.client.js"></script>
+
     <script src="views/user/controllers/profile.controller.client.js"></script>
 
     <script src="services/main.service.client.js "></script>
@@ -62,9 +64,13 @@
 
 <ng-include src="'views/navbar/templates/navbar.view.client.html'"></ng-include>
 
-</div>
 
-    <div ng-view class="page-wrapper {{pageClass}}"></div>
+<div ng-view class="page-wrapper {{pageClass}}"></div>
+
+
+<div class="player" ng-controller="playerController as model">
+    <iframe src="{{model.getPlayerUrl(uri)}}" class="player" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>
+</div>
 
 </body>
 
