@@ -11,12 +11,15 @@
                 var trackId = button.data('trackid');
                 var trackName = button.data('trackname');
                 var trackArtist = button.data('trackartist');
+                var trackUri = button.data('trackuri');
                 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
                 var modal = $(this);
                 $scope.trackId = trackId;
                 $scope.trackName = trackName;
                 $scope.trackArtist = trackArtist;
+                $scope.trackUri = trackUri;
+                console.log($scope.trackUri);
                 // $scope.$apply(function() {
                 //     modal.find('#track-id').val(trackId);
                 //     modal.find('#track-name').val(trackName);

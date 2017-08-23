@@ -3,7 +3,7 @@
         .module('MOTF')
         .controller('resultController',resultController);
 
-    function resultController($scope, $window, currentUser, $routeParams, mainService, playlistService) {
+    function resultController($rootScope, $scope, $window, currentUser, $routeParams, mainService, playlistService) {
 
         $scope.pageClass = 'page-result';
 
@@ -11,6 +11,7 @@
         model.searchTerm = $routeParams['search'];
         model.addTrack = addTrack;
         model.alertLogin = alertLogin;
+        model.play = play;
 
         // model.search = search;
 
@@ -42,11 +43,12 @@
 
         }
 
-        function addTrack(tid, tname, tartist, playlistid) {
+        function addTrack(tid, tname, tartist, turi, playlistid) {
             var track = {
                 "id": tid,
                 "name": tname,
-                "artist": tartist
+                "artist": tartist,
+                "uri": turi
             }
 
             playlistService
@@ -64,6 +66,11 @@
         
         function alertLogin() {
             $window.alert("Please login to add track to your playlists!");
+        }
+
+        function play(uri) {
+            var convertedUri = 'https://open.spotify.com/embed?uri=' + uri.split(":").join("%3A");
+            $rootScope.uri = convertedUri;
         }
 
         init();

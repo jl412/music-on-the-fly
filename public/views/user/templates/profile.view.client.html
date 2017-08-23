@@ -80,6 +80,9 @@
             <h5>{{playlist.name}}</h5>
             <ul>
                 <li ng-repeat="track in playlist.tracks">
+                    <span style="margin-right: 15px">
+                        <a role="button" ng-click="model.play(track.uri)"><i class="fa fa-play" aria-hidden="true"></i></i></a>
+                    </span>
                     {{track.name}}　/　by {{track.artist}}
                     <span style="margin-left: 15px">
                         <a role="button" ng-click="model.deleteTrack(track.id, playlist._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>

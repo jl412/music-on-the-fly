@@ -3,11 +3,12 @@
         .module('MOTF')
         .controller('profileController',profileController);
 
-    function profileController($scope, currentUser, $location, $routeParams, userService, playlistService ) {
+    function profileController($rootScope, $scope, currentUser, $location, $routeParams, userService, playlistService ) {
 
         $scope.pageClass= "page-profile";
 
         var model = this;
+        model.routeID = $routeParams['uid'];
         model.user = currentUser;
 
 
@@ -17,8 +18,10 @@
         model.createPlaylist = createPlaylist;
         model.deletePlaylist = deletePlaylist;
         model.deleteTrack = deleteTrack;
+        model.play = play;
 
         function init(){
+            console.log(model.user._id === model.routeID);
             playlistService
                 .findPlaylistsByUser(model.user._id)
                 .then(function (playlists) {
@@ -94,6 +97,11 @@
                             init();
                         });
                 })
+        }
+
+        function play(uri) {
+            var convertedUri = 'https://open.spotify.com/embed?uri=' + uri.split(":").join("%3A");
+            $rootScope.uri = convertedUri;
         }
 
         init()
